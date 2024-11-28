@@ -30,7 +30,7 @@ final_BI/
 │   │   └── label_encoders.pkl
 │   ├── package.json               # Khai báo dependencies của Node.js
 ├── Final_BI.ipynb                 # Notebook huấn luyện mô hình
-├── shopping_behavior_updated.csv  # Dataset gốc
+├── data_behavior_expand.csv  # Dataset gốc
 
 ```
 
