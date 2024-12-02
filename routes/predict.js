@@ -1,42 +1,25 @@
-const { spawn } = require("child_process");
 const path = require("path");
+const { PythonShell } = require("python-shell");
 
 const predictTrend = (req, res) => {
-  const { age, gender, category, location, color, season } = req.body;
+  const { age, gender, category, state, season } = req.body;
 
+  // Đường dẫn tới script Python
   const scriptPath = path.join(__dirname, "../scripts/predict_trend.py");
-  const python = spawn("python", [
-    scriptPath,
-    age,
-    gender,
-    category,
-    location,
-    color,
-    season,
-  ]);
 
-  let responseSent = false;
+  // Tham số truyền vào Python
+  const options = {
+    args: [age, gender, category, state, season],
+  };
 
-  python.stdout.on("data", (data) => {
-    if (!responseSent) {
-      responseSent = true;
-      res.json({ predicted_item: data.toString().trim() });
-    }
-  });
-
-  python.stderr.on("data", (data) => {
-    if (!responseSent) {
-      responseSent = true;
-      res.status(500).json({ error: data.toString().trim() });
-    }
-  });
-
-  python.on("close", (code) => {
-    if (!responseSent) {
-      responseSent = true;
-      res
-        .status(500)
-        .json({ error: `Python process exited with code ${code}` });
+  // Chạy script Python
+  PythonShell.run(scriptPath, options, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      // Kết quả từ Python trả về
+      const output = JSON.parse(results[0]);
+      res.json(output);
     }
   });
 };
@@ -46,44 +29,34 @@ const predictPotential = (req, res) => {
     age,
     gender,
     purchaseAmount,
-    location,
+    state,
     subscriptionStatus,
     frequencyOfPurchases,
   } = req.body;
 
+  // Đường dẫn tới script Python
   const scriptPath = path.join(__dirname, "../scripts/predict_potential.py");
-  const python = spawn("python", [
-    scriptPath,
-    age,
-    gender,
-    purchaseAmount,
-    location,
-    subscriptionStatus,
-    frequencyOfPurchases,
-  ]);
 
-  let responseSent = false;
+  // Tham số truyền vào Python
+  const options = {
+    args: [
+      age,
+      gender,
+      purchaseAmount,
+      state,
+      subscriptionStatus,
+      frequencyOfPurchases,
+    ],
+  };
 
-  python.stdout.on("data", (data) => {
-    if (!responseSent) {
-      responseSent = true;
-      res.json({ potential_customer: data.toString().trim() });
-    }
-  });
-
-  python.stderr.on("data", (data) => {
-    if (!responseSent) {
-      responseSent = true;
-      res.status(500).json({ error: data.toString().trim() });
-    }
-  });
-
-  python.on("close", (code) => {
-    if (!responseSent) {
-      responseSent = true;
-      res
-        .status(500)
-        .json({ error: `Python process exited with code ${code}` });
+  // Chạy script Python
+  PythonShell.run(scriptPath, options, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      // Kết quả từ Python trả về
+      const output = JSON.parse(results[0]);
+      res.json(output);
     }
   });
 };
