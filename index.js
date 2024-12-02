@@ -7,22 +7,26 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Trend Prediction Endpoint
 app.post("/predict-trend", (req, res) => {
   const { age, gender, category, state, season } = req.body;
-
-  const scriptPath = path.join(__dirname, "scripts/predict_trend.py");
+  const scriptPath = path.join(__dirname, "scripts", "predict_trend.py");
   const command = `python ${scriptPath} ${age} "${gender}" "${category}" "${state}" "${season}"`;
 
   exec(command, (error, stdout, stderr) => {
     if (error) {
       return res.status(500).json({ error: stderr });
     }
-    res.json({ predicted_item: stdout.trim() });
+    try {
+      const result = JSON.parse(stdout.trim());
+      res.json(result);
+    } catch (parseError) {
+      res
+        .status(500)
+        .json({ error: "Unable to parse response from Python script." });
+    }
   });
 });
 
-// Potential Prediction Endpoint
 app.post("/predict-potential", (req, res) => {
   const {
     age,
@@ -33,14 +37,21 @@ app.post("/predict-potential", (req, res) => {
     frequency_of_purchases,
   } = req.body;
 
-  const scriptPath = path.join(__dirname, "scripts/predict_potential.py");
+  const scriptPath = path.join(__dirname, "scripts", "predict_potential.py");
   const command = `python ${scriptPath} ${age} "${gender}" ${purchase_amount} "${state}" "${subscription_status}" "${frequency_of_purchases}"`;
 
   exec(command, (error, stdout, stderr) => {
     if (error) {
       return res.status(500).json({ error: stderr });
     }
-    res.json({ predicted_potential: stdout.trim() });
+    try {
+      const result = JSON.parse(stdout.trim());
+      res.json(result);
+    } catch (parseError) {
+      res
+        .status(500)
+        .json({ error: "Unable to parse response from Python script." });
+    }
   });
 });
 

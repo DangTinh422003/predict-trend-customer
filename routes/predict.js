@@ -15,11 +15,22 @@ const predictTrend = (req, res) => {
   // Chạy script Python
   PythonShell.run(scriptPath, options, (err, results) => {
     if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
+      console.error("Error executing Python script:", err); // In lỗi thực thi
+      return res.status(500).json({ error: err.message });
+    }
+
+    // Kiểm tra và in kết quả từ Python
+    console.log("Python script results:", results);
+
+    try {
       // Kết quả từ Python trả về
-      const output = JSON.parse(results[0]);
+      const output = JSON.parse(results[0]); // Phân tích JSON
       res.json(output);
+    } catch (parseError) {
+      console.error("JSON Parse Error:", parseError); // In ra lỗi phân tích JSON
+      return res
+        .status(500)
+        .json({ error: "Unable to parse response from Python script." });
     }
   });
 };
@@ -52,11 +63,22 @@ const predictPotential = (req, res) => {
   // Chạy script Python
   PythonShell.run(scriptPath, options, (err, results) => {
     if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
+      console.error("Error executing Python script:", err); // In lỗi thực thi
+      return res.status(500).json({ error: err.message });
+    }
+
+    // Kiểm tra và in kết quả từ Python
+    console.log("Python script results:", results);
+
+    try {
       // Kết quả từ Python trả về
-      const output = JSON.parse(results[0]);
+      const output = JSON.parse(results[0]); // Phân tích JSON
       res.json(output);
+    } catch (parseError) {
+      console.error("JSON Parse Error:", parseError); // In ra lỗi phân tích JSON
+      return res
+        .status(500)
+        .json({ error: "Unable to parse response from Python script." });
     }
   });
 };
