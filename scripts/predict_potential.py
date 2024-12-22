@@ -5,7 +5,6 @@ import numpy as np
 import json  
 from sklearn.cluster import KMeans  
 
-# Load models, scalers, và dữ liệu  
 scaler = joblib.load("models/scaler_potential.pkl")  
 model = joblib.load("models/model_potential.pkl")  
 label_encoders = joblib.load("models/label_encoders.pkl")  

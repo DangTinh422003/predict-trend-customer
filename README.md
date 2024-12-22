@@ -69,7 +69,7 @@ pip install pandas scikit-learn joblib
 
 #### 4. Lưu mô hình và scaler
 
-Mở và chạy file `Final_BI.ipynb` để huấn luyện mô hình và lưu các file sau:
+Mở và chạy file `Final_BI_V2.ipynb` để huấn luyện mô hình và lưu các file sau:
 
 - `model_trend.pkl`
 - `model_potential.pkl`
@@ -105,7 +105,7 @@ Server sẽ chạy tại địa chỉ http://localhost:3000.
     "age": 30,
     "gender": "Male",
     "category": "Clothing",
-    "location": "Kentucky",
+    "state": "Kentucky",
     "color": "Black",
     "season": "Spring"
   }
@@ -116,6 +116,7 @@ Server sẽ chạy tại địa chỉ http://localhost:3000.
 - **Endpoint**: `POST http://localhost:3000/predict-potential`
 - **Mô tả**: Phân loại khách hàng thành "Tiềm năng" hoặc "Không tiềm năng" dựa trên thông tin mua sắm.
 - **Yêu cầu**:
+
   - **Phương thức**: `POST`
   - **Headers**:
     - `Content-Type`: `application/json`
@@ -126,7 +127,7 @@ Server sẽ chạy tại địa chỉ http://localhost:3000.
       "age": 44,
       "gender": "Female",
       "purchaseAmount": 77,
-      "location": "Minnesota",
+      "state": "Minnesota",
       "subscriptionStatus": "No",
       "frequencyOfPurchases": "Weekly"
     }
