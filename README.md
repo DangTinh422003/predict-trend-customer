@@ -132,3 +132,76 @@ Server sẽ chạy tại địa chỉ http://localhost:3000.
       "frequency_of_purchases": "Weekly"
     }
     ```
+
+## 📝 BÁO CÁO CHI TIẾT DỰ ÁN DỰ ĐOÁN XU HƯỚNG THỜI TRANG VÀ PHÂN LOẠI KHÁCH HÀNG
+
+### 🚀 1. GIỚI THIỆU DỰ ÁN
+
+#### 📌 1.1 Bối Cảnh & Vấn Đề Đặt Ra
+
+- #### Ngành thời trang là một trong những lĩnh vực phát triển nhanh nhất trên thế giới, nhưng cũng là lĩnh vực dễ bị ảnh hưởng bởi xu hướng tiêu dùng và hành vi khách hàng
+
+- #### Các doanh nghiệp bán lẻ thường gặp khó khăn trong việc
+
+  - #### Dự đoán sản phẩm bán chạy trong từng mùa, từng khu vực
+
+  - #### Phân loại khách hàng để tập trung vào những đối tượng tiềm năng nhất
+
+- #### Việc sử dụng trí tuệ nhân tạo (AI) và học máy (Machine Learning) giúp giải quyết bài toán này một cách hiệu quả và tối ưu
+
+#### 📌 1.2 Mục Tiêu Dự Án
+
+- #### `Mục Tiêu 1:` Dự đoán sản phẩm thời trang phù hợp cho từng đối tượng khách hàng
+
+- #### `Mục Tiêu 2:` Phân loại khách hàng thành "Tiềm năng" và "Không tiềm năng" dựa trên hành vi và thông tin cá nhân
+
+- #### `Mục Tiêu 3:` Tích hợp API vào các nền tảng thương mại điện tử và CRM để tự động hóa quy trình
+
+### 🎯 2. TÍNH NĂNG CHÍNH CỦA API
+
+#### ✅ 2.1 API Dự Đoán Xu Hướng Thời Trang `(/predict-trend)`
+
+- #### `Chức năng:` Dự đoán sản phẩm thời trang phù hợp dựa trên dữ liệu khách hàng
+
+- #### `💡 Ứng Dụng Thực Tế:`
+
+  - #### Gợi ý sản phẩm phù hợp trên trang web thương mại điện tử
+
+  - #### Phân tích xu hướng mua sắm theo mùa và địa phương
+
+#### ✅ 2.2 API Phân Loại Khách Hàng `(/predict-potential)`
+
+- #### `Chức năng:` Phân loại khách hàng thành `"Tiềm năng"` và `"Không tiềm năng"` dựa trên thông tin mua sắm và hành vi tiêu dùng
+
+- #### `💡 Ứng Dụng Thực Tế:`
+
+  - #### Xác định khách hàng tiềm năng cho các chiến dịch khuyến mãi
+
+  - #### Phân bổ ngân sách marketing hiệu quả
+
+### 💼 3. ĐỐI TƯỢNG SỬ DỤNG API
+
+| Đối tượng               | Ứng dụng                                        | Lợi ích                          |
+| ----------------------- | ----------------------------------------------- | -------------------------------- |
+| Doanh Nghiệp Thời Trang | Dự đoán xu hướng sản phẩm, phân loại khách hàng | Tăng doanh thu, tối ưu kho hàng  |
+| Đội Ngũ Marketing       | Tập trung vào khách hàng tiềm năng              | Tối ưu chi phí quảng cáo         |
+| Sàn Thương Mại Điện Tử  | Gợi ý sản phẩm cá nhân hóa                      | Cải thiện trải nghiệm khách hàng |
+| CRM/ERP Systems         | Phân tích và theo dõi hành vi khách hàng        | Tăng hiệu suất bán hàng          |
+
+### 📊 4. LỢI ÍCH CỦA API
+
+1. Dự đoán xu hướng sản phẩm chính xác cao.
+
+2. Tự động phân loại khách hàng theo nhóm tiềm năng.
+
+3. Giảm chi phí marketing thông qua việc tối ưu đối tượng mục tiêu.
+
+4. Tích hợp dễ dàng với các hệ thống CRM, ERP.
+
+5. API có khả năng mở rộng, phù hợp cho doanh nghiệp lớn và nhỏ.
+
+### 🔄 5. QUY TRÌNH HOẠT ĐỘNG CỦA API
+
+`Khách Hàng → API /predict-trend → Python Backend → Machine Learning Model → Phân Tích Dữ Liệu → Dự Đoán Sản Phẩm → Trả Kết Quả`
+
+`Khách Hàng → API /predict-potential → Python Backend → Machine Learning Model → Phân Tích Hành Vi → Phân Loại → Trả Kết Quả`
