@@ -124,11 +124,11 @@ Server sẽ chạy tại địa chỉ http://localhost:3000.
 
     ```json
     {
-      "age": 44,
+      "age": 40,
       "gender": "Female",
-      "purchaseAmount": 77,
+      "purchase_amount": 77,
       "state": "Minnesota",
-      "subscriptionStatus": "No",
-      "frequencyOfPurchases": "Weekly"
+      "subscription_status": "No",
+      "frequency_of_purchases": "Weekly"
     }
     ```

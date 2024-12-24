@@ -41,25 +41,37 @@ app.post("/predict-potential", (req, res) => {
     age,
     gender,
     purchase_amount,
-    location,
+    state,
     subscription_status,
     frequency_of_purchases,
   } = req.body;
 
   const scriptPath = path.join(__dirname, "scripts", "predict_potential.py");
-  const command = `python ${scriptPath} ${age} "${gender}" ${purchase_amount} "${location}" "${subscription_status}" "${frequency_of_purchases}"`;
+  const command = `python ${scriptPath} ${age} "${gender}" ${purchase_amount} "${state}" "${subscription_status}" "${frequency_of_purchases}"`;
 
   exec(command, (error, stdout, stderr) => {
+    console.log("Python stdout:", stdout);
+    console.log("Python stderr:", stderr);
+
     if (error) {
-      return res.status(500).json({ error: stderr });
+      console.error("Error executing Python script:", error.message);
+      return res.status(500).json({ error: stderr || error.message });
     }
+
     try {
-      const result = JSON.parse(stdout.trim());
+      const cleanOutput = stdout.trim().split("\n").pop();
+      const result = JSON.parse(cleanOutput);
+      if (result.error) {
+        console.error("Python Script Error:", result.error);
+        return res.status(500).json({ error: result.error });
+      }
       res.json(result);
     } catch (parseError) {
-      res
-        .status(500)
-        .json({ error: "Unable to parse response from Python script." });
+      console.error("JSON Parse Error:", parseError.message);
+      res.status(500).json({
+        error: "Unable to parse response from Python script.",
+        details: stdout.trim(),
+      });
     }
   });
 });
