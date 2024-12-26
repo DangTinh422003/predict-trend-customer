@@ -14,7 +14,6 @@ API được xây dựng bằng **Express.js** và các mô hình học máy đ�
 ## **Cấu trúc dự án**
 
 ```plaintext
-final_BI/
 ├── express-BE/                    # Backend Express.js
 │   ├── index.js                   # Khởi động server
 │   ├── routes/
@@ -49,7 +48,7 @@ final_BI/
 
 ```bash
 git clone <repository-url>
-cd final_BI
+cd <repo-name>
 ```
 
 #### 2. Cài đặt các package cho Node.js
@@ -77,19 +76,19 @@ Mở và chạy file `Final_BI_V2.ipynb` để huấn luyện mô hình và lưu
 - `scaler_potential.pkl`
 - `label_encoders.pkl`
 
-Các file này sẽ được lưu trong thư mục `express-BE/models`.
+Các file này sẽ được lưu trong thư mục `<Repo-name>/models`.
 
 ## **Cách chạy**
 
 ### **1. Khởi động server**
 
-Di chuyển vào thư mục `express-BE` và chạy lệnh sau:
+Di chuyển vào thư mục `<Repo-name>` và chạy lệnh sau:
 
 ```bash
 npm run dev
 ```
 
-Server sẽ chạy tại địa chỉ http://localhost:3000.
+Server sẽ chạy tại địa chỉ <http://localhost:3000>
 
 ## **Sử dụng các Endpoint**
 
@@ -122,16 +121,16 @@ Server sẽ chạy tại địa chỉ http://localhost:3000.
     - `Content-Type`: `application/json`
   - **Body** (JSON):
 
-    ```json
-    {
-      "age": 40,
-      "gender": "Female",
-      "purchase_amount": 77,
-      "state": "Minnesota",
-      "subscription_status": "No",
-      "frequency_of_purchases": "Weekly"
-    }
-    ```
+  ```json
+  {
+    "age": 40,
+    "gender": "Female",
+    "purchase_amount": 77,
+    "state": "Minnesota",
+    "subscription_status": "No",
+    "frequency_of_purchases": "Weekly"
+  }
+  ```
 
 ## 📝 BÁO CÁO CHI TIẾT DỰ ÁN DỰ ĐOÁN XU HƯỚNG THỜI TRANG VÀ PHÂN LOẠI KHÁCH HÀNG
 
